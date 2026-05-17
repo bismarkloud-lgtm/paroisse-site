@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Demande de Messe - Paroisse Saint Joseph d'Agatô
+
+    </title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <!-- LOGO GAUCHE -->
+    <img
+    src="images/e5a1b715e3caed24b602ba4669a7cc87.jpg"
+    alt="Saint Joseph"
+    class="logo-left">
+
+    <!-- LOGO DROITE -->
+    <img
+    src="images/OIP.webp"
+    alt="Archidiocèse"
+    class="logo-right">
+
+    <h1>
+
+        Demande de Messe
+
+    </h1>
+
+    <p>
+
+        Paroisse Saint Joseph d'Agatô
+
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+    <section class="admin-box">
+
+        <h2>
+
+            Formulaire de Demande
+
+        </h2>
+
+
+
+        <form id="formulaireMesse">
+
+            <!-- NOM -->
+            <input
+            type="text"
+            id="nom"
+            placeholder="Nom complet"
+            required>
+
+
+
+            <!-- TELEPHONE -->
+            <input
+            type="tel"
+            id="telephone"
+            placeholder="Téléphone"
+            required>
+
+
+
+            <!-- TYPE DE MESSE -->
+            <select
+            id="typeMesse"
+            required>
+
+                <option value="">
+                    Choisir le type de messe
+                </option>
+
+                <option>
+                    Action de grâce
+                </option>
+
+                <option>
+                    Repos de l'âme
+                </option>
+
+                <option>
+                    Intention spéciale
+                </option>
+
+                <option>
+                    Anniversaire
+                </option>
+
+            </select>
+
+            <br><br>
+
+
+
+            <!-- DATE -->
+            <input
+            type="date"
+            id="dateMesse"
+            required>
+
+
+
+            <!-- MESSAGE -->
+            <textarea
+            id="message"
+            rows="5"
+            placeholder="Votre intention de messe..."
+            required>
+            </textarea>
+
+            <br><br>
+
+
+
+            <!-- BOUTON -->
+            <button type="submit">
+
+                Envoyer la demande
+
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+
+
+<footer>
+
+    <p>
+
+        © 2026 Paroisse Saint Joseph d'Agatô
+
+    </p>
+
+</footer>
+
+
+
+<!-- JAVASCRIPT -->
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

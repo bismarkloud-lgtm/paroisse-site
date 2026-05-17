@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        Administration - Paroisse Saint Joseph d'Agatô
+
+    </title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <!-- LOGO GAUCHE -->
+    <img
+    src="images/e5a1b715e3caed24b602ba4669a7cc87.jpg"
+    alt="Saint Joseph"
+    class="logo-left">
+
+    <!-- LOGO DROITE -->
+    <img
+    src="images/OIP.webp"
+    alt="Archidiocèse"
+    class="logo-right">
+
+    <h1>
+
+        Tableau de Bord Administrateur
+
+    </h1>
+
+    <p>
+
+        Gestion de la Paroisse Saint Joseph d'Agatô
+
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+    <!-- CONNEXION -->
+    <section
+    class="admin-box"
+    id="connexionBox">
+
+        <h2>
+
+            Connexion Administrateur
+
+        </h2>
+
+
+
+        <input
+        type="text"
+        id="adminNom"
+        placeholder="Nom d'utilisateur">
+
+
+
+        <input
+        type="password"
+        id="adminCle"
+        placeholder="Clé d'accès">
+
+
+
+        <br><br>
+
+
+
+        <button onclick="connexionAdmin()">
+
+            Se connecter
+
+        </button>
+
+    </section>
+
+
+
+    <!-- DASHBOARD -->
+    <section
+    class="admin-box"
+    id="dashboard">
+
+        <h2>
+
+            Tableau de Bord
+
+        </h2>
+
+
+
+        <div class="feature-grid">
+
+            <!-- MEMBRES -->
+            <div class="feature">
+
+                <h3>
+
+                    👥 Membres
+
+                </h3>
+
+                <p id="totalMembres">
+
+                    0 membre
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EVENEMENTS -->
+            <div class="feature">
+
+                <h3>
+
+                    📅 Événements
+
+                </h3>
+
+                <p>
+
+                    Gestion des activités paroissiales
+
+                </p>
+
+            </div>
+
+
+
+            <!-- MESSES -->
+            <div class="feature">
+
+                <h3>
+
+                    ✝️ Demandes de Messe
+
+                </h3>
+
+                <p id="totalMesses">
+
+                    0 demande
+
+                </p>
+
+            </div>
+
+
+
+            <!-- GROUPES -->
+            <div class="feature">
+
+                <h3>
+
+                    ⛪ Groupes
+
+                </h3>
+
+                <p>
+
+                    Coordination des groupes paroissiaux
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <br>
+
+
+
+        <!-- ACTIONS -->
+        <button onclick="publierAnnonce()">
+
+            Publier une annonce
+
+        </button>
+
+        <br><br>
+
+
+
+        <button onclick="voirStatistiques()">
+
+            Voir les statistiques
+
+        </button>
+
+        <br><br>
+
+
+
+        <button onclick="deconnexion()">
+
+            Déconnexion
+
+        </button>
+
+
+
+        <hr>
+
+
+
+        <!-- INSCRIPTIONS -->
+        <h2>
+
+            Liste des inscriptions
+
+        </h2>
+
+
+
+        <div id="listeInscriptions">
+
+            Chargement des inscriptions...
+
+        </div>
+
+
+
+        <hr>
+
+
+
+        <!-- DEMANDES DE MESSE -->
+        <h2>
+
+            Demandes de Messe
+
+        </h2>
+
+
+
+        <div id="listeMesses">
+
+            Chargement des demandes...
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+<footer>
+
+    <p>
+
+        © 2026 Paroisse Saint Joseph d'Agatô
+
+    </p>
+
+</footer>
+
+
+
+<!-- JAVASCRIPT -->
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
