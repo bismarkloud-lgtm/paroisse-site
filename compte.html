@@ -11,7 +11,7 @@
 
     <title>
 
-        Espace Membre - Paroisse Saint Joseph d'Agbato
+        Mon Compte - Paroisse Saint Joseph d'Agbatô
 
     </title>
 
@@ -43,7 +43,7 @@
 
     <p>
 
-        Paroisse Saint Joseph d'Agbato
+        Paroisse Saint Joseph d'Agbatô
 
     </p>
 
@@ -53,39 +53,33 @@
 
 <div class="container">
 
-    <!-- PROFIL -->
+    <!-- INFORMATIONS -->
     <section class="admin-box">
 
         <h2>
 
-            Bienvenue 👋
+            Mon Compte
 
         </h2>
 
-        <p>
 
-            Connecté avec :
+
+        <p id="infoUtilisateur">
+
+            Chargement des informations...
 
         </p>
-
-        <br>
-
-        <h3 id="nomUtilisateur">
-
-            Chargement...
-
-        </h3>
 
     </section>
 
 
 
-    <!-- FONCTIONNALITES -->
-    <section>
+    <!-- SERVICES -->
+    <section class="admin-box">
 
-        <h2 class="section-title">
+        <h2>
 
-            Fonctionnalités Membres
+            Services Disponibles
 
         </h2>
 
@@ -93,28 +87,29 @@
 
         <div class="feature-grid">
 
-            <!-- EVENEMENTS -->
+            <!-- INSCRIPTION -->
             <div class="feature">
 
                 <h3>
 
-                    📅 Événements
+                    Inscriptions
 
                 </h3>
 
                 <p>
 
-                    Consultez les activités paroissiales.
+                    Rejoignez une coordination
+                    ou un groupe paroissial.
 
                 </p>
 
                 <br>
 
-                <a href="evenements.html">
+                <a href="inscription.html">
 
                     <button>
 
-                        Voir
+                        S'inscrire
 
                     </button>
 
@@ -129,13 +124,14 @@
 
                 <h3>
 
-                    ✝️ Demandes de Messe
+                    Demandes de Messe
 
                 </h3>
 
                 <p>
 
-                    Envoyer une intention de messe.
+                    Envoyez vos intentions
+                    de messe en ligne.
 
                 </p>
 
@@ -145,7 +141,7 @@
 
                     <button>
 
-                        Accéder
+                        Faire une demande
 
                     </button>
 
@@ -155,63 +151,63 @@
 
 
 
-            <!-- GROUPES -->
+            <!-- EVENEMENTS -->
             <div class="feature">
 
                 <h3>
 
-                    👥 Coordinations
+                    Événements
 
                 </h3>
 
                 <p>
 
-                    Accéder aux groupes paroissiaux.
+                    Consultez les activités
+                    et rencontres paroissiales.
 
                 </p>
 
                 <br>
 
-                <a href="index.html">
+                <a href="evenements.html">
 
                     <button>
 
-                        Voir
+                        Voir les événements
 
                     </button>
 
                 </a>
-
-            </div>
-
-
-
-            <!-- SECURITE -->
-            <div class="feature">
-
-                <h3>
-
-                    🔒 Sécurité
-
-                </h3>
-
-                <p>
-
-                    Votre compte est protégé par Firebase.
-
-                </p>
-
-                <br>
-
-                <button onclick="deconnexionMembre()">
-
-                    Déconnexion
-
-                </button>
 
             </div>
 
         </div>
+
+        <br>
+
+
+
+        <!-- DECONNEXION -->
+        <button onclick="deconnexionCompte()">
+
+            Déconnexion
+
+        </button>
+
+        <br><br>
+
+
+
+        <!-- RETOUR -->
+        <a href="index.html">
+
+            <button>
+
+                Retour à l'accueil
+
+            </button>
+
+        </a>
 
     </section>
 
@@ -223,7 +219,7 @@
 
     <p>
 
-        © 2026 Paroisse Saint Joseph d'Agbato
+        © 2026 Paroisse Saint Joseph d'Agbatô
 
     </p>
 
