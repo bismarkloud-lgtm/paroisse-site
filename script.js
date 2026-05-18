@@ -24,6 +24,8 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 
+
+
 import {
 
     getAuth,
@@ -32,9 +34,7 @@ import {
 
     signInWithEmailAndPassword,
 
-    signOut,
-
-    onAuthStateChanged
+    signOut
 
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
@@ -76,58 +76,201 @@ const auth = getAuth(app);
 
 
 // =====================================
-// NOTIFICATION MODERNE
+// CREATION DE COMPTE
 // =====================================
 
-function notification(message){
+const registerForm =
+document.getElementById(
+    "registerForm"
+);
 
-    const notificationBox =
-    document.createElement("div");
 
-    notificationBox.innerText =
-    message;
 
-    notificationBox.style.position =
-    "fixed";
+if(registerForm){
 
-    notificationBox.style.bottom =
-    "20px";
+    registerForm.addEventListener(
 
-    notificationBox.style.right =
-    "20px";
+        "submit",
 
-    notificationBox.style.background =
-    "#2563eb";
+        async function(e){
 
-    notificationBox.style.color =
-    "white";
+            e.preventDefault();
 
-    notificationBox.style.padding =
-    "15px 25px";
 
-    notificationBox.style.borderRadius =
-    "14px";
 
-    notificationBox.style.boxShadow =
-    "0 10px 25px rgba(0,0,0,0.3)";
+            let nom =
+            document.getElementById(
+                "registerNom"
+            ).value;
 
-    notificationBox.style.zIndex =
-    "9999";
 
-    notificationBox.style.fontWeight =
-    "bold";
 
-    document.body.appendChild(
-        notificationBox
+            let email =
+            document.getElementById(
+                "registerEmail"
+            ).value;
+
+
+
+            let password =
+            document.getElementById(
+                "registerPassword"
+            ).value;
+
+
+
+            try{
+
+                await createUserWithEmailAndPassword(
+
+                    auth,
+                    email,
+                    password
+
+                );
+
+
+
+                await addDoc(
+
+                    collection(
+                        db,
+                        "users"
+                    ),
+
+                    {
+
+                        nom,
+                        email,
+                        date:
+                        new Date()
+
+                    }
+
+                );
+
+
+
+                alert(
+                    "Compte créé avec succès"
+                );
+
+
+
+                window.location.href =
+                "login.html";
+
+            }
+
+            catch(erreur){
+
+                alert(
+                    erreur.message
+                );
+
+            }
+
+        }
+
     );
 
-    setTimeout(() => {
+}
 
-        notificationBox.remove();
 
-    }, 3000);
+
+// =====================================
+// CONNEXION
+// =====================================
+
+const loginForm =
+document.getElementById(
+    "loginForm"
+);
+
+
+
+if(loginForm){
+
+    loginForm.addEventListener(
+
+        "submit",
+
+        async function(e){
+
+            e.preventDefault();
+
+
+
+            let email =
+            document.getElementById(
+                "loginEmail"
+            ).value;
+
+
+
+            let password =
+            document.getElementById(
+                "loginPassword"
+            ).value;
+
+
+
+            try{
+
+                await signInWithEmailAndPassword(
+
+                    auth,
+                    email,
+                    password
+
+                );
+
+
+
+                alert(
+                    "Connexion réussie"
+                );
+
+
+
+                window.location.href =
+                "compte.html";
+
+            }
+
+            catch(erreur){
+
+                alert(
+                    erreur.message
+                );
+
+            }
+
+        }
+
+    );
 
 }
+
+
+
+// =====================================
+// DECONNEXION MEMBRE
+// =====================================
+
+window.deconnexionCompte =
+async function(){
+
+    await signOut(auth);
+
+    alert(
+        "Déconnexion réussie"
+    );
+
+    window.location.href =
+    "login.html";
+
+};
 
 
 
@@ -174,47 +317,37 @@ if(formulaireInscription){
 
 
 
-            try{
+            await addDoc(
 
-                await addDoc(
+                collection(
+                    db,
+                    "inscriptions"
+                ),
 
-                    collection(
-                        db,
-                        "inscriptions"
-                    ),
+                {
 
-                    {
+                    nom,
+                    prenom,
+                    telephone,
+                    email,
+                    adresse,
+                    groupe,
+                    date:
+                    new Date()
 
-                        nom,
-                        prenom,
-                        telephone,
-                        email,
-                        adresse,
-                        groupe,
-                        date:
-                        new Date()
+                }
 
-                    }
-
-                );
+            );
 
 
 
-                notification(
-                    "Inscription enregistrée"
-                );
+            alert(
+                "Inscription enregistrée"
+            );
 
 
 
-                formulaireInscription.reset();
-
-            }catch(error){
-
-                notification(
-                    "Erreur d'inscription"
-                );
-
-            }
+            formulaireInscription.reset();
 
         }
 
@@ -403,7 +536,7 @@ async function(id, ancienTelephone, ancienGroupe){
 
 
 
-        notification(
+        alert(
             "Membre modifié"
         );
 
@@ -445,7 +578,7 @@ async function(id){
 
 
 
-        notification(
+        alert(
             "Membre supprimé"
         );
 
@@ -485,60 +618,80 @@ if(formulaireMesse){
             let nom =
             document.getElementById("nom").value;
 
+
+
             let telephone =
             document.getElementById("telephone").value;
+
+
 
             let typeMesse =
             document.getElementById("typeMesse").value;
 
+
+
+            let autreType =
+            document.getElementById(
+                "autreTypeMesse"
+            ).value;
+
+
+
+            if(typeMesse === "autre"){
+
+                typeMesse =
+                autreType;
+
+            }
+
+
+
             let dateMesse =
             document.getElementById("dateMesse").value;
+
+
+
+            let heureMesse =
+            document.getElementById("heureMesse").value;
+
+
 
             let message =
             document.getElementById("message").value;
 
 
 
-            try{
+            await addDoc(
 
-                await addDoc(
+                collection(
+                    db,
+                    "messes"
+                ),
 
-                    collection(
-                        db,
-                        "demandes_messe"
-                    ),
+                {
 
-                    {
+                    nom,
+                    telephone,
+                    typeMesse,
+                    dateMesse,
+                    heureMesse,
+                    message,
+                    date:
+                    new Date()
 
-                        nom,
-                        telephone,
-                        typeMesse,
-                        dateMesse,
-                        message,
-                        date:
-                        new Date()
+                }
 
-                    }
-
-                );
-
-
-
-                notification(
-                    "Demande de messe envoyée"
-                );
+            );
 
 
 
-                formulaireMesse.reset();
+            alert(
+                "Demande de messe envoyée"
+            );
 
-            }catch(error){
 
-                notification(
-                    "Erreur lors de l'envoi"
-                );
 
-            }
+            formulaireMesse.reset();
 
         }
 
@@ -585,7 +738,7 @@ async function afficherMesses(){
 
         collection(
             db,
-            "demandes_messe"
+            "messes"
         )
 
     );
@@ -635,6 +788,12 @@ async function afficherMesses(){
 
             <p>
 
+                ⏰ ${data.heureMesse}
+
+            </p>
+
+            <p>
+
                 📝 ${data.message}
 
             </p>
@@ -677,15 +836,15 @@ window.connexionAdmin = function(){
 
 
 
-    if(cle === "Paroisse 2006"){
+    if(cle === "Paroisse2006"){
 
-        notification(
+        alert(
             "Connexion réussie"
         );
 
     }else{
 
-        notification(
+        alert(
             "Clé incorrecte"
         );
 
@@ -706,8 +865,9 @@ window.publierAnnonce = function(){
 
     if(annonce){
 
-        notification(
-            "Annonce publiée"
+        alert(
+            "Annonce publiée : \n\n" +
+            annonce
         );
 
     }
@@ -718,8 +878,8 @@ window.publierAnnonce = function(){
 
 window.voirStatistiques = function(){
 
-    notification(
-        "Statistiques mises à jour"
+    alert(
+        "Statistiques mises à jour automatiquement"
     );
 
 };
@@ -728,231 +888,6 @@ window.voirStatistiques = function(){
 
 window.deconnexion = function(){
 
-    notification(
-        "Déconnexion..."
-    );
-
-    setTimeout(() => {
-
-        location.reload();
-
-    }, 1000);
+    location.reload();
 
 };
-
-
-
-// =====================================
-// INSCRIPTION MEMBRE
-// =====================================
-
-const formulaireRegister =
-document.getElementById(
-    "formulaireRegister"
-);
-
-
-
-if(formulaireRegister){
-
-    formulaireRegister.addEventListener(
-
-        "submit",
-
-        async function(e){
-
-            e.preventDefault();
-
-
-
-            let nom =
-            document.getElementById(
-                "registerNom"
-            ).value;
-
-
-
-            let email =
-            document.getElementById(
-                "registerEmail"
-            ).value;
-
-
-
-            let password =
-            document.getElementById(
-                "registerPassword"
-            ).value;
-
-
-
-            try{
-
-                await createUserWithEmailAndPassword(
-
-                    auth,
-                    email,
-                    password
-
-                );
-
-
-
-                notification(
-                    "Compte créé avec succès"
-                );
-
-
-
-                setTimeout(() => {
-
-                    window.location.href =
-                    "login.html";
-
-                }, 1500);
-
-
-
-            }catch(error){
-
-                notification(
-                    error.message
-                );
-
-            }
-
-        }
-
-    );
-
-}
-
-
-
-// =====================================
-// CONNEXION MEMBRE
-// =====================================
-
-const formulaireConnexion =
-document.getElementById(
-    "formulaireConnexion"
-);
-
-
-
-if(formulaireConnexion){
-
-    formulaireConnexion.addEventListener(
-
-        "submit",
-
-        async function(e){
-
-            e.preventDefault();
-
-
-
-            let email =
-            document.getElementById(
-                "loginEmail"
-            ).value;
-
-
-
-            let password =
-            document.getElementById(
-                "loginPassword"
-            ).value;
-
-
-
-            try{
-
-                await signInWithEmailAndPassword(
-
-                    auth,
-                    email,
-                    password
-
-                );
-
-
-
-                notification(
-                    "Connexion réussie"
-                );
-
-
-
-                setTimeout(() => {
-
-                    window.location.href =
-                    "compte.html";
-
-                }, 1500);
-
-
-
-            }catch(error){
-
-                notification(
-                    "Email ou mot de passe incorrect"
-                );
-
-            }
-
-        }
-
-    );
-
-}
-
-
-
-// =====================================
-// DECONNEXION MEMBRE
-// =====================================
-
-window.deconnexionMembre =
-async function(){
-
-    await signOut(auth);
-
-    notification(
-        "Déconnexion réussie"
-    );
-
-
-
-    setTimeout(() => {
-
-        window.location.href =
-        "login.html";
-
-    }, 1000);
-
-};
-
-
-
-// =====================================
-// VERIFICATION UTILISATEUR
-// =====================================
-
-onAuthStateChanged(auth, (user) => {
-
-    const nomUtilisateur =
-    document.getElementById(
-        "nomUtilisateur"
-    );
-
-
-
-    if(user && nomUtilisateur){
-
-        nomUtilisateur.innerHTML =
-        user.email;
-
-    }
-
-});
